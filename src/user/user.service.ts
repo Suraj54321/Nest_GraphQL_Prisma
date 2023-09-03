@@ -38,11 +38,20 @@ export class UserService {
     })
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserInput: UpdateUserInput) {
+    return await this.prisma.user.update({
+      where:{
+        id:id
+      },
+      data:updateUserInput
+    }) 
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    return await this.prisma.user.delete({
+      where:{
+        id:id
+      }
+    }) 
   }
 }
